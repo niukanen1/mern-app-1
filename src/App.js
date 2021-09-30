@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css"
+
+import About from './Components/About'; 
+import Main from './Components/Main';
+import Vote from './Components/Vote';
+import ResultList from './Components/ResultList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* <div className="container"> */}
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+            <Link to="/" className="navbar-brand">Voting App</Link>
+            <div className="collpase navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                  <Link to="/vote" className="nav-link">Vote</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/about" className="nav-link">About</Link>
+                </li>
+                <li className="navbar-item">
+                  <Link to="/resultlist" className="nav-link">Results</Link>
+                </li>
+              </ul>
+              
+            </div>
+            
+        </nav>
+      {/* </div> */}
+      <br/>
+      <Route path="/" exact component={Main}/>
+      <Route path="/vote" component={Vote}/>
+      <Route path="/about" exact component={About}/>
+      <Route path="/resultlist" component={ResultList}/>
+    </Router>
   );
 }
 
